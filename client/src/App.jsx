@@ -1,17 +1,22 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 
-const token = localStorage.getItem("token");
-const publicRoutes = ["/login", "/signup"];
-
-if (!token && !publicRoutes.includes(window.location.pathname)) {
-  window.location.replace("/login");
-}
-
 const App = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const publicRoutes = ["/login", "/signup"];
+
+    if (!token && !publicRoutes.includes(location.pathname)) {
+      navigate("/login");
+    }
+  }, [token, location.pathname]);
+
   return (
     <div>
       <Routes>
