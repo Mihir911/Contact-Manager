@@ -20,7 +20,7 @@ const Signup = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/auth/signup", {
+      await axios.post("https://contact-manager-quli.onrender.com/api/auth/signup", {
         name: form.name,
         email: form.email,
         password: form.password,

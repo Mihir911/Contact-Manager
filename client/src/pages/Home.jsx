@@ -9,7 +9,7 @@ const Home = () => {
 
   const fetchContacts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/contacts");
+      const res = await axios.get("https://contact-manager-quli.onrender.com/api/contacts");
       setContacts(res.data);
     } catch (err) {
       console.error("Failed to fetch contacts", err);
@@ -25,7 +25,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/contacts", form);
+      await axios.post("https://contact-manager-quli.onrender.com/api/contacts", form);
       setToast({ text: "Contact added successfully!", type: "success" });
       setForm({ name: "", email: "", phone: "", message: "" });
       setShowForm(false);
