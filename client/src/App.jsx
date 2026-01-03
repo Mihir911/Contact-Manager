@@ -5,8 +5,10 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 
 const token = localStorage.getItem("token");
-if (!token && window.location.pathname !== "/signup") {
-  window.location.href = "/login";
+const publicRoutes = ["/login", "/signup"];
+
+if (!token && !publicRoutes.includes(window.location.pathname)) {
+  window.location.replace("/login");
 }
 
 const App = () => {
@@ -16,6 +18,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );
